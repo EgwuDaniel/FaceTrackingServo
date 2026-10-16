@@ -50,12 +50,12 @@ while True:
             current_pitch = 90
 
             if idleForward == True:
-                current_yaw = numpy.clip(current_yaw + 1, 0, 180)
+                current_yaw = numpy.clip(current_yaw + .5, 0, 180)
 
                 if current_yaw >= 180:
                     idleForward = False
             else:
-                current_yaw = numpy.clip(current_yaw - 1, 0, 180)
+                current_yaw = numpy.clip(current_yaw - .5, 0, 180)
 
                 if current_yaw <= 0:
                     idleForward = True
