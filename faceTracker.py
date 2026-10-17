@@ -9,6 +9,7 @@ board = pyfirmata2.Arduino("COM5")
 
 servo_yaw = board.get_pin('d:9:s')
 servo_pitch = board.get_pin('d:8:s')
+buzzer = board.get_pin('d:10:o')
 
 defaultServoPos = [90,90]
 
@@ -42,10 +43,14 @@ while True:
         cv2.putText(ynCam.frame, f"Face found : {True}", (0,30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 1)
 
         lastIdled = time.perf_counter()
+
+        buzzer.write(1)
+
+
     else:
         cv2.putText(ynCam.frame, f"Face found : {False}", (0,30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 1)
         currentTime = time.perf_counter()
-
+        buzzer.write(0)
         if currentTime - lastIdled > 1:
             current_pitch = 90
 
